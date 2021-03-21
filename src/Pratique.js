@@ -3,24 +3,43 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
 
+import Metronome from '@kevinorriss/react-metronome'
+
 import Metronomo from './Metronomo';
 import toTitleCase from './Functions';
-import atabaque  from './assets/atabaque-removebg-preview.png';
-import base from './assets/atabaque_quadrado_base.png';
-import encerramento from './assets/atabaque_quadrado_encerramento.png';
+import buscarToque from './toques';
 
 import './Pratique.css';
 
 export default function Pratique({ menu }){
     const [praticando, setPraticando] = useState(false);
     const [imgSrc, setImgSrc] = useState('');
+    const [variacoes, setVariacoes] = useState([]);
 
     let relogio = {};
     let cont = 0;
 
+    function montarImg(caminho){
+        return caminho;
+    }
+
     useEffect(() => { 
-        setImgSrc(base);
+        let toque = buscarToque(menu);
+        setVariacoes(toque.variacoes);
     }, [menu]);
+
+    useEffect(() => { 
+        let base =[];
+        if(variacoes){
+            base = variacoes.filter(variacao => variacao.nome === "Base");
+            if(base[0]){
+                setImgSrc(window.location.href + base[0].imagem);
+                console.log(window.location.pathname);
+                console.log(window.location.href);
+                console.log('base', window.location.href + base[0].imagem);
+            }
+        }
+    }, [variacoes]);
 
     useEffect(() => { 
         if (praticando === false){
@@ -33,18 +52,20 @@ export default function Pratique({ menu }){
         return () => clearTimeout(relogio)  
     }, [praticando]);
 
+    
     function schedule(){
+        let newImg;
         if (praticando === true){
             relogio = setTimeout(schedule, 3000);
             switch (cont) {
                 case 0:
-                    setImgSrc(base);
+                    setImgSrc(newImg);
                     break;
                 case 1:
-                    setImgSrc(encerramento);
+                    setImgSrc(newImg);
                     break;
                 default:
-                    setImgSrc(base);
+                    setImgSrc(newImg);
                     break;
               }
               cont = cont > 1 ? 0 : cont + 1;
@@ -87,6 +108,7 @@ export default function Pratique({ menu }){
             </div>
             <div>
                 <img className="Item" src={imgSrc} />
+                <img className="Item" src="/imgs/barravento_base.png" />
             </div>
         </div>
     )

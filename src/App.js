@@ -8,7 +8,7 @@ import Pratique from './Pratique';
 function App() {
   const [menu, setMenu] = useState('');
 
-  useEffect(() => { setMenu('barra-vento') }, '');
+  useEffect(() => { setMenu('barravento') }, '');
 
   return (
     <div className="App">

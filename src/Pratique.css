@@ -3,7 +3,8 @@
     width: 100%;
     height: 100%;
     left: 300px;
-    background: #E6E65A;
+    /*background: #E6E65A;*/
+    background: #ffffff;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -32,6 +33,45 @@
     /*left: 30px;*/
     background: #50BE50;
     /* float: left;*/
+    display: flex;
+    flex-wrap: wrap;
+}
+.MetronomoTitulo {
+    min-width: 223px;
+    height: 33px;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 35px;
+    color: #327832;
+}
+
+.bmp {
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    color: #327832;
+}
+.slider {
+    min-width: 350px;
+}
+
+.circulo {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.cinza {
+    background-color: grey;
+}
+
+.cinzaClaro {
+    background-color: lightgrey;
 }
 
 .BotaoControle {
@@ -53,6 +93,7 @@
     display: flex;
     width: 600px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .Column {
@@ -64,7 +105,6 @@
 }
 
 .Item {
-    flex-wrap: wrap;
     margin: 5px;
     /*flex: 1;*/
 }
