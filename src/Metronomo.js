@@ -14,9 +14,10 @@ export default function Metronomo ({ praticando }){
             clearTimeout(oscilador);
         }
         if (praticando){
-            let tempo = 1000 / (bpms/60);
+            setPasso(1);
+           /* let tempo = 1000 / (bpms/60);
             oscilador = setTimeout(schedule, tempo);
-            return () => clearTimeout(oscilador);
+            return () => clearTimeout(oscilador);*/
         }   
         return () => clearTimeout(oscilador)  
     }, [praticando]);
@@ -33,8 +34,20 @@ export default function Metronomo ({ praticando }){
             }
         } else {
             clearTimeout(oscilador);
+            setPasso(0);
         }
     }
+
+    useEffect(() => { 
+        if (passo > 0){
+            let tempo = 1000 / (bpms/60);
+            oscilador = setTimeout(schedule, tempo);
+        } else {
+            clearTimeout(oscilador);
+            setPasso(0);
+        }
+        return () => clearTimeout(oscilador) ;
+    }, [passo]);
 
     function onChange(value){
         setBpms(value);
