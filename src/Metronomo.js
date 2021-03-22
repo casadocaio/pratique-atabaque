@@ -15,15 +15,11 @@ export default function Metronomo ({ praticando }){
         }
         if (praticando){
             setPasso(1);
-           /* let tempo = 1000 / (bpms/60);
-            oscilador = setTimeout(schedule, tempo);
-            return () => clearTimeout(oscilador);*/
         }   
         return () => clearTimeout(oscilador)  
     }, [praticando]);
 
     function schedule(){
-        console.log('veio schedule', passo)
         if (praticando === true){
             let tempo = 1000 / (bpms/60);
             oscilador = setTimeout(schedule, tempo);
@@ -84,7 +80,7 @@ export default function Metronomo ({ praticando }){
                     defaultValue={bpms}
                     min={50}
                     max={200}
-                    marks={{ 50: {
+                   /* marks={{ 50: {
                         style: {
                           color: '#327832',
                         },
@@ -94,7 +90,7 @@ export default function Metronomo ({ praticando }){
                           color: '#327832',
                         },
                         label:  200,
-                      }, }} 
+                      }, }} */
                     onChange={value => onChange(value)}
                 />
             </div>
