@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { Button, Input, Switch  } from 'antd';
 import { PlayCircleOutlined } from '@ant-design/icons';
-
-import Metronome from '@kevinorriss/react-metronome'
 
 import Metronomo from './Metronomo';
 import toTitleCase from './Functions';
@@ -21,19 +19,16 @@ export default function Pratique({ menu }){
     const [intervalo, setIntervalo] = useState(5);
     const [sequencial, setSequencial] = useState(true);
 
-    let relogio = {};
+    let relogio = useRef();
     let cont = 0;
     let max = 0;
-
-    function montarImg(caminho){
-        return caminho;
-    }
 
     useEffect(() => { 
         let toque = buscarToque(menu);
         setVariacoes(toque.variacoes);
         setPraticando(false);
-        clearTimeout(relogio);
+        clearTimeout(relogio.current);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [menu]);
 
     useEffect(() => { 
@@ -51,15 +46,16 @@ export default function Pratique({ menu }){
 
     useEffect(() => { 
         if (praticando === false){
-            clearTimeout(relogio);
+            clearTimeout(relogio.current);
         }
         if (praticando){
             let tempo = 1000 * intervalo;
-            relogio = setTimeout(schedule (), tempo);
-            return () => clearTimeout(relogio);
+            relogio.current = setTimeout(schedule (), tempo);
+            return () => clearTimeout(relogio.current);
         }   
-        return () => clearTimeout(relogio)  
-    }, [praticando]);
+        return () => clearTimeout(relogio.current)  
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [praticando, sequencial, intervalo]);
 
     function getRndInteger(min, max) {
         return Math.floor(Math.random() * (max - min) ) + min;
@@ -67,10 +63,10 @@ export default function Pratique({ menu }){
 
     
     function schedule(){
-        let newImg;
+        //console.log('schedule pratique', praticando);
         if (praticando === true){
             let tempo = 1000 * intervalo;
-            relogio = setTimeout(schedule, tempo);
+            relogio.current = setTimeout(schedule, tempo);
             max = variacoes.length - 1;
             setImgSrc(variacoes[cont].imagem);
             setImgAlt(variacoes[cont].nome);
@@ -82,7 +78,7 @@ export default function Pratique({ menu }){
                 cont = getRndInteger(0, max);
             }
         } else {
-            clearTimeout(relogio);
+            clearTimeout(relogio.current);
         }
     }
 

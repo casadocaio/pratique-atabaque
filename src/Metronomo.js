@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Slider } from 'antd';
 
 import './Metronomo.css';
@@ -7,29 +7,32 @@ export default function Metronomo ({ praticando }){
     const [bpms, setBpms] = useState(100);
     const [passo, setPasso] = useState(0);
 
-    let oscilador = {};
+    let oscilador = useRef();
 
     useEffect(() => { 
         if (praticando === false){
-            clearTimeout(oscilador);
+            clearTimeout(oscilador.current);
+            setPasso(0);
         }
         if (praticando){
             setPasso(1);
         }   
-        return () => clearTimeout(oscilador)  
+        return () => clearTimeout(oscilador.current)  
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [praticando]);
 
     function schedule(){
+        //console.log('schedule metro', praticando);
         if (praticando === true){
             let tempo = 1000 / (bpms/60);
-            oscilador = setTimeout(schedule, tempo);
+            oscilador.current = setTimeout(schedule, tempo);
             if(passo < 1 || passo > 1){
                 setPasso(1);
             } else {
                 setPasso(passo + 1);
             }
         } else {
-            clearTimeout(oscilador);
+            clearTimeout(oscilador.current);
             setPasso(0);
         }
     }
@@ -37,12 +40,13 @@ export default function Metronomo ({ praticando }){
     useEffect(() => { 
         if (passo > 0){
             let tempo = 1000 / (bpms/60);
-            oscilador = setTimeout(schedule, tempo);
+            oscilador.current = setTimeout(schedule, tempo);
         } else {
-            clearTimeout(oscilador);
+            clearTimeout(oscilador.current);
             setPasso(0);
         }
-        return () => clearTimeout(oscilador) ;
+        return () => clearTimeout(oscilador.current) ;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [passo]);
 
     function onChange(value){

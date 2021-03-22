@@ -6,7 +6,7 @@ import Pratique from './Pratique';
 function App() {
   const [menu, setMenu] = useState('');
 
-  useEffect(() => { setMenu('barravento') }, '');
+  useEffect(() => { setMenu('barravento') }, []);
 
   return (
     <div className="App">
