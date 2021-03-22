@@ -28,6 +28,8 @@ export default function Pratique({ menu }){
         setVariacoes(toque.variacoes);
         setPraticando(false);
         clearTimeout(relogio.current);
+        setImgSrc('');
+        setImgAlt('');
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [menu]);
 
@@ -41,6 +43,11 @@ export default function Pratique({ menu }){
                 setVariacao(base[0].nome);
                 setOnomatopeia(base[0].onomatopeia);
             }
+        } else {
+            setImgSrc('');
+            setImgAlt('');
+            setVariacao('');
+            setOnomatopeia('');
         }
     }, [variacoes]);
 
@@ -102,7 +109,7 @@ export default function Pratique({ menu }){
     return (
         <div className="Container Row">
             <div className="Titulo Item">{toTitleCase(menu)}</div>
-            <div className="Container Row ItemPos">
+            {menu && <div className="Container Row ItemPos">
                 <div className="Item 2">
                     <Metronomo praticando={praticando} />
                 </div>
@@ -136,13 +143,15 @@ export default function Pratique({ menu }){
                             {praticando ? 'Parar' : 'Começar'}
                     </Button>   
                 </div>
-            </div>
+            </div>} 
             <div className="onomatopeia Item">
-                <p>Variação: {variacao}</p>
-                <p>Onomatopéia: {onomatopeia}</p>
+            {variacao && <div>
+                    <p>Variação: {variacao}</p>
+                    <p>Onomatopéia: {onomatopeia}</p>
+                </div>}
             </div>
             <div>
-                <img className="Item imagem" src={imgSrc} alt={imgAlt}/>
+            {imgSrc && <img className="Item imagem" src={imgSrc} alt={imgAlt}/>}
             </div>
         </div>
     )
