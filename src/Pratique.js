@@ -14,6 +14,7 @@ import './Pratique.css';
 export default function Pratique({ menu }){
     const [praticando, setPraticando] = useState(false);
     const [imgSrc, setImgSrc] = useState('');
+    const [imgAlt, setImgAlt] = useState('');
     const [variacao, setVariacao] = useState('');
     const [onomatopeia, setOnomatopeia] = useState('');
     const [variacoes, setVariacoes] = useState([]);
@@ -41,6 +42,7 @@ export default function Pratique({ menu }){
             base = variacoes.filter(variacao => variacao.nome === "Base");
             if(base[0]){
                 setImgSrc(window.location.href + base[0].imagem);
+                setImgAlt(base[0].nome);
                 setVariacao(base[0].nome);
                 setOnomatopeia(base[0].onomatopeia);
             }
@@ -71,6 +73,7 @@ export default function Pratique({ menu }){
             relogio = setTimeout(schedule, tempo);
             max = variacoes.length - 1;
             setImgSrc(variacoes[cont].imagem);
+            setImgAlt(variacoes[cont].nome);
             setVariacao(variacoes[cont].nome);
             setOnomatopeia(variacoes[cont].onomatopeia);
             if(sequencial){
@@ -143,7 +146,7 @@ export default function Pratique({ menu }){
                 <p>Onomatopéia: {onomatopeia}</p>
             </div>
             <div>
-                <img className="Item imagem" src={imgSrc} />
+                <img className="Item imagem" src={imgSrc} alt={imgAlt}/>
             </div>
         </div>
     )
