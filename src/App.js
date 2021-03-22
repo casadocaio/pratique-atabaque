@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { /*useEffect,*/ useState } from 'react';
 import './Menu.css';
 import Menu from './Menu';
 import Pratique from './Pratique';
@@ -6,7 +6,7 @@ import Pratique from './Pratique';
 function App() {
   const [menu, setMenu] = useState('');
 
-  useEffect(() => { setMenu('barravento') }, []);
+  //useEffect(() => { setMenu('barravento') }, []);
 
   return (
     <div className="App">
