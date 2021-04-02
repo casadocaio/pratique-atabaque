@@ -1,23 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import { Button, Input, Switch  } from 'antd';
-import { PlayCircleOutlined } from '@ant-design/icons';
-
-import Metronomo from './Metronomo';
-import toTitleCase from './Functions';
 import buscarToque from './toques';
 
-import './Pratique.css';
+/*import './Pratique.css';*/
 
-export default function Pratique({ menu }){
-    const [praticando, setPraticando] = useState(false);
+export default function Pratique({ 
+    menu, 
+    praticando, 
+    setPraticando,
+    intervalo,
+    sequencial })
+{
     const [imgSrc, setImgSrc] = useState('');
     const [imgAlt, setImgAlt] = useState('');
     const [variacao, setVariacao] = useState('');
     const [onomatopeia, setOnomatopeia] = useState('');
     const [variacoes, setVariacoes] = useState([]);
-    const [intervalo, setIntervalo] = useState(5);
-    const [sequencial, setSequencial] = useState(true);
 
     let relogio = useRef();
     let cont = 0;
@@ -89,60 +87,13 @@ export default function Pratique({ menu }){
         }
     }
 
-    function handleClick(){
-        if(praticando){
-            setPraticando(false);
-        } else {
-            setPraticando(true);
-        }
-    }
 
-    function handleChangeIntervalo(event){
-        /*console.log('handle', event.nativeEvent.data);*/
-        setIntervalo(event.nativeEvent.data);
-    };
 
-    function handleChangeSequencia(){
-        setSequencial(!sequencial);
-    };
+    
 
     return (
         <div className="Container Row">
-            <div className="Titulo Item">{toTitleCase(menu)}</div>
             {menu && <div className="Container Row ItemPos">
-                <div className="Item 2">
-                    <Metronomo praticando={praticando} />
-                </div>
-                <div className="BotaoControle Item">
-                    <p>Intervalo entre variação: <Input 
-                                                    placeholder = "Intervalo" 
-                                                    value = {intervalo}
-                                                    style={{ width: '40px' }}
-                                                    onChange = {event => handleChangeIntervalo(event)}
-                                                />
-                    </p>
-                    <p>
-                    <Switch
-                        checked={sequencial}
-                        checkedChildren="Sequencial"
-                        unCheckedChildren="Aleatório"
-                        onClick={() => handleChangeSequencia()}
-                        />
-                    </p>
-                </div>
-                <div className="BotaoControle Item">
-                    <Button 
-                        type="primary" 
-                        icon={<PlayCircleOutlined />} 
-                        size={'large'} 
-                        style={{ 
-                            background: praticando ? '#FF0000' : '#50BE50', 
-                            border: praticando ? '#FF0000' : '#50BE50' }}
-                        onClick={() => handleClick()}
-                    >
-                            {praticando ? 'Parar' : 'Começar'}
-                    </Button>   
-                </div>
             </div>} 
             <div className="onomatopeia Item">
             {variacao && <div>

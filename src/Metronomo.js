@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Slider } from 'antd';
 
-import './Metronomo.css';
+/*import './Metronomo.css';*/
 
 export default function Metronomo ({ praticando }){
     const [bpms, setBpms] = useState(100);
@@ -76,7 +76,7 @@ export default function Metronomo ({ praticando }){
             </div>
             <div className={"Item circulo" + classeCSS(2)} >
             </div>
-            <div className="bmp Item">
+            <div className="bpm Item">
                 BPM: {bpms}
             </div>
             <div className="slider Item">
@@ -84,17 +84,6 @@ export default function Metronomo ({ praticando }){
                     defaultValue={bpms}
                     min={50}
                     max={200}
-                   /* marks={{ 50: {
-                        style: {
-                          color: '#327832',
-                        },
-                        label:  50,
-                      }, 200: {
-                        style: {
-                          color: '#327832',
-                        },
-                        label:  200,
-                      }, }} */
                     onChange={value => onChange(value)}
                 />
             </div>
