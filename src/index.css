@@ -11,3 +11,221 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.appcontainer {
+  display: flex;
+  flex-flow: row;
+  min-height: 100vh;
+}
+
+p {
+  margin: 0 !important;
+}
+
+.Menu {
+  display: flex;
+  flex: 1;
+  min-width: 250px;
+  background-color: #363740;
+}
+
+.menuContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.Menu ul{
+  list-style: none;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.menuItem {
+  align-self: flex-start;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  height: 55px;
+  color: #A4A6B3;
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+nav.menuNav {
+  padding: 5px;
+}
+
+.menuNav > ul > li {
+  width: 100%;
+}
+
+.menuItemSelected {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  color: #DDE2FF;
+  background-color: gray;
+  height: 55px;
+  border-left: honeydew;
+  border-left-width: 1px;
+  padding: 5px;
+  align-content: stretch;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.Config {
+  display: flex;
+  background-color: #0F1E36;
+  flex: 1.5;
+}
+
+.Pratique {
+  background-color: #E4E4E4;
+  display: flex;
+  flex: 3;
+  justify-content: center;
+}
+
+.imglogo{
+  width: 200px;
+  height: 200px;
+  margin: 5px;
+}
+
+.texto {
+  margin-left: 5px;
+}
+
+.configContainer {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: stretch;
+  padding: 10px;
+  height: 50vh;
+  width: 100%;
+  flex: 1;
+}
+
+.controleConfig {
+  min-width: 220px;
+  flex-grow: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  background: #1E3151;
+}
+
+.tituloConfig {
+  font-size: 26px;
+  line-height: 32px;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: #A4A6B3;
+}
+.comecarConfig {
+  align-self: center;
+
+}
+
+.circulo {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.cinza {
+    background-color: grey;
+}
+
+.cinzaClaro {
+    background-color: lightgrey;
+}
+
+.metronomo {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.metronomoTitulo {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 21px;
+  color: #A4A6B3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.boxCirculo {
+  display: flex;
+}
+
+.boxCirculo > .circulo:nth-child(1) {
+  margin-right: 10px;
+}
+
+.bpm {
+  font-size: 12px;
+  line-height: 18px;
+  color: #A4A6B3;
+}
+
+.slider {
+  min-width: 270px;
+}
+
+.intervalo {
+  flex-grow: 1;
+  font-size: 18px;
+  line-height: 24px;
+  color: #A4A6B3;
+}
+
+.modoExibicao {
+  flex-grow: 1;
+  font-size: 18px;
+  line-height: 24px;
+  color: #A4A6B3;
+}
+
+.onomatopeia {
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  margin: 15px;
+  color: #757575;
+}
+
+.Item {
+  margin: 5px;
+  vertical-align: middle;
+  border-style: none;
+  width: 95%;
+  height: auto;
+}
+
+@media screen and (max-width: 850px) {
+  .appcontainer {
+    flex-flow: column;
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Slider } from 'antd';
+import { Slider, Tooltip } from 'antd';
 
-import './Metronomo.css';
+/*import './Metronomo.css';*/
 
 export default function Metronomo ({ praticando }){
     const [bpms, setBpms] = useState(100);
@@ -68,36 +68,27 @@ export default function Metronomo ({ praticando }){
     }
 
     return(
-        <div className="Metronomo">
-            <div className="MetronomoTitulo">
+        <>
+            <div className="metronomoTitulo">
                 <p>Metronomo</p>
-            </div>
-            <div className={"Item circulo" + classeCSS(1)} >
-            </div>
-            <div className={"Item circulo" + classeCSS(2)} >
-            </div>
-            <div className="bmp Item">
-                BPM: {bpms}
-            </div>
-            <div className="slider Item">
-                <Slider 
-                    defaultValue={bpms}
-                    min={50}
-                    max={200}
-                   /* marks={{ 50: {
-                        style: {
-                          color: '#327832',
-                        },
-                        label:  50,
-                      }, 200: {
-                        style: {
-                          color: '#327832',
-                        },
-                        label:  200,
-                      }, }} */
-                    onChange={value => onChange(value)}
-                />
-            </div>
-        </div>
+                <div className="boxCirculo">
+                    <div className={"circulo" + classeCSS(1)} ></div>
+                    <div className={"circulo" + classeCSS(2)} ></div>
+                </div>
+            </div>       
+            <Tooltip placement="right" title=" BPM: Batidas por minuto. Arraste aqui para alterar a velocidade do metrônomo.">  
+                <div className="bpm">
+                    BPM: {bpms}
+                </div>
+                <div className="slider">
+                    <Slider 
+                        defaultValue={bpms}
+                        min={50}
+                        max={200}
+                        onChange={value => onChange(value)}
+                    />
+                </div>
+            </Tooltip>   
+        </>
     )
 }
