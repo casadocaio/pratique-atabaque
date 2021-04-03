@@ -1,79 +1,71 @@
 import React from 'react';
 
-import { Button, Input, Switch } from 'antd';
+import { Button, InputNumber, Switch, Tooltip } from 'antd';
 
 import Metronomo from './Metronomo';
 
 import toTitleCase from './Functions';
 
-export default function Config ({ 
-    menu, 
-    praticando, 
-    setPraticando, 
+export default function Config({
+    menu,
+    praticando,
+    setPraticando,
     intervalo,
     setIntervalo,
     sequencial,
-    setSequencial })
+    setSequencial }) 
 {
-
-    function handleClick(){
-        if(praticando){
-            setPraticando(false);
-        } else {
-            setPraticando(true);
-        }
-    }
-
-    function handleChangeIntervalo(event){
-        /*console.log('handle', event.nativeEvent.data);*/
-        setIntervalo(event.nativeEvent.data);
-    };
-
-    function handleChangeSequencia(){
-        setSequencial(!sequencial);
-    };
-
-    return( 
+    
+    return (
         <div className="configContainer">
             <div className="controleConfig">
                 <div className="tituloConfig">
                     <p className="">{toTitleCase(menu)}</p>
                 </div>
                 <div className="comecarConfig">
-                    <Button 
-                        type="primary" 
-                        size={'large'} 
-                        shape="round"
-                        style={{ 
-                            background: praticando ? '#FF0000' : '', 
-                            border: praticando ? '#FF0000' : '' }}
-                        onClick={() => handleClick()}
-                    >
+                    <Tooltip placement="right" title="Clique aqui para começar a trocar as variações do toque.">
+                        <Button
+                            type="primary"
+                            size={'large'}
+                            shape="round"
+                            style={{
+                                background: praticando ? '#FF0000' : '',
+                                border: praticando ? '#FF0000' : ''
+                            }}
+                            onClick={() => setPraticando(!praticando)}
+                        >
                             {praticando ? 'Parar' : 'Começar'}
-                    </Button>  
+                        </Button>
+                    </Tooltip>
                 </div>
             </div>
             <div className="metronomo">
                 <Metronomo praticando={praticando} />
             </div>
             <div className="intervalo">
-                <p>Intervalo entre variação: <Input 
-                                                    placeholder = "Intervalo" 
-                                                    value = {intervalo}
-                                                    style={{ width: '40px' }}
-                                                    onChange = {event => handleChangeIntervalo(event)}
-                                                />
-                </p>
-            </div>
-            <div className="modoExibicao">
-                    <p> Modo de exibição: 
-                    <Switch
-                        checked={sequencial}
-                        checkedChildren="Sequencial"
-                        unCheckedChildren="Aleatório"
-                        onClick={() => handleChangeSequencia()}
+                <Tooltip placement="right" title="Tempo de espera até que a próxima variação apareça, ideal 5 segundos. Digite o número ou clique nas setas.">
+                    <p>Intervalo entre variação (em segundos): &nbsp;    
+                        <InputNumber
+                            min={3} 
+                            max={10}
+                            value={intervalo}
+                            style={{ width: '60px' }}
+                            onChange={setIntervalo}
                         />
                     </p>
+                </Tooltip>
+            </div>
+            <div className="modoExibicao">
+                <Tooltip placement="right" title="Modo de como as variações serão alternadas, de forma sequencial ou randomicamente, ou seja, sortidas. Clique para alterar.">
+                    <p> Modo de exibição:<br></br>
+                        <Switch
+                            checked={sequencial}
+                            checkedChildren="Sequencial"
+                            unCheckedChildren="Aleatório"
+                            onClick={() => setSequencial(!sequencial)}
+                        />
+                    </p>
+                </Tooltip>
             </div>
         </div>)
 }

@@ -68,7 +68,6 @@ export default function Pratique({
 
     
     function schedule(){
-        //console.log('schedule pratique', praticando);
         if (praticando === true){
             let tempo = 1000 * intervalo;
             relogio.current = setTimeout(schedule, tempo);

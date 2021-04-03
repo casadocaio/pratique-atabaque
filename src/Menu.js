@@ -9,7 +9,7 @@ export default function Menu ({ menu, setMenu }){
         <div className="menuContainer">
             <img className="imglogo menuItem" src={logo} alt='Pratique - Espaço do Ogã' />
             <p className="texto menuItem">Pratique seu toque.</p>
-            <nav className="menuNav menuItem">
+            <nav className="menuNav">
                 <ul>
                     <li><div className={menu === 'angola'? "menuItemSelected" : "menuItem"}  >Angola</div></li>
                     <li><div className={menu === 'barravento'? "menuItemSelected" : "menuItem"} onClick={() => setMenu('barravento')}>Barra Vento</div></li>
