@@ -14,6 +14,22 @@ import ijexaV3 from './imgs/ijexa_v3.png';
 import ijexaV4 from './imgs/ijexa_v4.png';
 import ijexaV5 from './imgs/ijexa_v5.png';
 
+import congoBase from './imgs/congo_base.png';
+import congoEncerramento from './imgs/congo_encerramento.png';
+import congoV1 from './imgs/congo_v1.png';
+import congoV2 from './imgs/congo_v2.png';
+import congoV3 from './imgs/congo_v3.png';
+import congoV4 from './imgs/congo_v4.png';
+import congoV5 from './imgs/congo_v5.png';
+import congoV6 from './imgs/congo_v6.png';
+import congoV7 from './imgs/congo_v7.png';
+import congoV8 from './imgs/congo_v8.png';
+import congoV9 from './imgs/congo_v9.png';
+import congoV10 from './imgs/congo_v10.png';
+import congoV11 from './imgs/congo_v11.png';
+import congoV12 from './imgs/congo_v12.png';
+import congoV13 from './imgs/congo_v13.png';
+
 const barravento = {
     "nome": "Barravento",
     "variacoes": [
@@ -116,7 +132,7 @@ const congo = {
         },
         {
             "nome": "Variação 2",
-            "onomatopeia": "TA-1 TA-2/ TA-3 TUM-4 TUM-5/ TA-6 TA-7/ TUM-8 TUM-9/",
+            "onomatopeia": "TA-1/ TA-2 TUM-3 TUM-4/ TA-5 TA-6/ TUM-7 TUM-8/",
             "imagem": congoV2
         },
         {
@@ -180,13 +196,6 @@ const congo = {
 export default function buscarToque(toque) {
     let ret = {};
 
-    if (toque === 'barravento') {
-        ret = barravento;
-    }
-    if (toque === 'ijexa') {
-        ret = ijexa;
-    }
-
     switch (toque) {
         case 'barravento':
             ret = barravento;
@@ -198,9 +207,8 @@ export default function buscarToque(toque) {
             ret = congo;
             break;
         default:
-            console.log(`Sorry, we are out of ${expr}.`);
+            console.log(`Por favor, escolher um toque.`);
     }
-
 
     return ret;
 }

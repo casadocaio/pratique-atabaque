@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Button, InputNumber, Switch, Tooltip } from 'antd';
 
@@ -15,6 +15,16 @@ export default function Config({
     sequencial,
     setSequencial }) 
 {
+
+    useEffect(() => { 
+        switch (menu) {
+            case 'congo':
+                setIntervalo(20);
+                break;
+            default:
+                setIntervalo(5);
+        }
+    }, [menu]);
     
     return (
         <div className="configContainer">
@@ -47,7 +57,7 @@ export default function Config({
                     <p>Intervalo entre variação (em segundos): &nbsp;    
                         <InputNumber
                             min={3} 
-                            max={10}
+                            max={20}
                             value={intervalo}
                             style={{ width: '60px' }}
                             onChange={setIntervalo}
