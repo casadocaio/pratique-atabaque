@@ -24,7 +24,7 @@ export default function Config({
             default:
                 setIntervalo(5);
         }
-    }, [menu]);
+    }, [menu, setIntervalo]);
     
     return (
         <div className="configContainer">
@@ -54,27 +54,25 @@ export default function Config({
             </div>
             <div className="intervalo">
                 <Tooltip placement="right" title="Tempo de espera até que a próxima variação apareça, ideal 5 segundos. Digite o número ou clique nas setas.">
-                    <p>Intervalo entre variação (em segundos): &nbsp;    
-                        <InputNumber
-                            min={3} 
-                            max={20}
-                            value={intervalo}
-                            style={{ width: '60px' }}
-                            onChange={setIntervalo}
-                        />
-                    </p>
+                    <p>Intervalo entre variação (em segundos):</p>
+                    <InputNumber
+                        min={3} 
+                        max={20}
+                        value={intervalo}
+                        style={{ width: '60px' }}
+                        onChange={setIntervalo}
+                    />
                 </Tooltip>
             </div>
             <div className="modoExibicao">
                 <Tooltip placement="right" title="Modo de como as variações serão alternadas, de forma sequencial ou randomicamente, ou seja, sortidas. Clique para alterar.">
-                    <p> Modo de exibição:<br></br>
-                        <Switch
-                            checked={sequencial}
-                            checkedChildren="Sequencial"
-                            unCheckedChildren="Aleatório"
-                            onClick={() => setSequencial(!sequencial)}
-                        />
-                    </p>
+                    <p> Modo de exibição:</p>
+                    <Switch
+                        checked={sequencial}
+                        checkedChildren="Sequencial"
+                        unCheckedChildren="Aleatório"
+                        onClick={() => setSequencial(!sequencial)}
+                    />
                 </Tooltip>
             </div>
         </div>)
